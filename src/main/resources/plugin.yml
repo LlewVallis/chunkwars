@@ -1,0 +1,21 @@
+author: Llew Vallis
+description: ${project.description}
+main: io.github.llewvallis.chunkwars.ChunkWarsPlugin
+name: ${project.name}
+version: ${project.version}
+website: ${project.url}
+api-version: "1.16"
+depend: [ProtocolLib]
+commands:
+  arena-create:
+    usage: arena-create <arena>
+  arena-delete:
+    usage: arena-delete <arena>
+  arena:
+    usage: arena <arena>
+  join:
+    usage: join <team>
+  end:
+    usage: end <team>
+  hub:
+    usage: hub
