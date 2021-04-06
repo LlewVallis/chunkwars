@@ -100,7 +100,7 @@ public class TerrainProfile {
     }
 
     public double terrainScale() {
-        return 80 + (random(TERRAIN_SCALE).nextDouble() - 0.5) * 12;
+        return 40 + (random(TERRAIN_SCALE).nextDouble() - 0.5) * 6;
     }
 
     public double terrainFrequencyX() {

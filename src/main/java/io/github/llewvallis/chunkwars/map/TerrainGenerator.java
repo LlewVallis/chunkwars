@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class TerrainGenerator extends ChunkGenerator {
 
-    private static final int HEIGHT_OFFSET = 64;
+    private static final int HEIGHT_OFFSET = 90;
 
     private final int seed;
 
