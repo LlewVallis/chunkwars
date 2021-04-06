@@ -85,6 +85,13 @@ public class ItemBuilder {
                 .lore(ChatColor.GRAY + "Deals no extra damage");
     }
 
+    public static ItemBuilder hardenedHoe() {
+        return new ItemBuilder(Material.STONE_HOE)
+                .name(ChatColor.GRAY + "Hardened Hoe")
+                .damage(1.0)
+                .lore(ChatColor.GRAY + "Deals no extra damage");
+    }
+
     public static ItemBuilder crossbow() {
         return new ItemBuilder(Material.CROSSBOW)
                 .name(ChatColor.GRAY + "Crossbow")
