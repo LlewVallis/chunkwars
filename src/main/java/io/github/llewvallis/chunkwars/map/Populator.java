@@ -46,15 +46,8 @@ public abstract class Populator {
     protected abstract void populate();
 
     protected Material getBlock(double x, double y, double z) {
-        int intX = round(x);
-        int intZ = round(z);
-        int intY = round(y);
+        Location location = mapLocation(x, y, z);
 
-        if (team == GameTeam.DARK) {
-            intZ = 15 - intZ;
-        }
-
-        Location location = new Location(world, intX + chunk.getX() * 16, intY, intZ + chunk.getZ() * 16);
         return Optional.ofNullable(changes.get(location))
                 .map(BlockData::getMaterial)
                 .orElseGet(() -> location.getBlock().getType());
@@ -65,6 +58,16 @@ public abstract class Populator {
     }
 
     protected void setBlock(double x, double y, double z, BlockData blockData) {
+        Location location = mapLocation(x, y, z);
+
+        if (sideSwapProtection && (location.getZ() < 0) != (team == GameTeam.DARK)) {
+            return;
+        }
+
+        changes.put(location, blockData);
+    }
+
+    protected Location mapLocation(double x, double y, double z) {
         int intX = round(x);
         int intZ = round(z);
         int intY = round(y);
@@ -73,14 +76,7 @@ public abstract class Populator {
             intZ = 15 - intZ;
         }
 
-        if (sideSwapProtection && (intZ + chunk.getZ() * 16 < 0) != (team == GameTeam.DARK)) {
-            return;
-        }
-
-        int worldX = intX + chunk.getX() * 16;
-        int worldZ = intZ + chunk.getZ() * 16;
-
-        changes.put(new Location(world, worldX, intY, worldZ), blockData);
+        return new Location(world, intX + chunk.getX() * 16, intY, intZ + chunk.getZ() * 16);
     }
 
     protected int getTerrainHeight(double x, double z) {

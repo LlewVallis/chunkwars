@@ -1,5 +1,8 @@
 package io.github.llewvallis.chunkwars.map;
 
+import io.github.llewvallis.chunkwars.ChunkWarsPlugin;
+import io.github.llewvallis.chunkwars.handler.MelonHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.data.Ageable;
@@ -43,11 +46,17 @@ public class FertileLandPopulator extends Populator {
         }
 
         int melonIndex = random.nextInt(farmlandBlocks.size());
-        Location melonLocation = farmlandBlocks.get(melonIndex);
+        Location farmLocation = farmlandBlocks.get(melonIndex);
 
         Ageable melonData = (Ageable) Material.MELON_STEM.createBlockData();
         melonData.setAge(melonData.getMaximumAge());
 
-        setBlock(melonLocation.getX(), melonLocation.getY() + 1, melonLocation.getZ(), melonData);
+        setBlock(farmLocation.getX(), farmLocation.getY() + 1, farmLocation.getZ(), melonData);
+
+        Location dropLocation = mapLocation(farmLocation.getX(), farmLocation.getY() + 1, farmLocation.getZ());
+
+        Bukkit.getScheduler().runTaskLater(ChunkWarsPlugin.instance, () -> {
+            MelonHandler.dropMelonsPeriodically(dropLocation);
+        }, 1);
     }
 }

@@ -151,8 +151,14 @@ public class ItemBuilder {
 
     public static ItemBuilder sapling() {
         return new ItemBuilder(Material.BAMBOO)
-                .name(ChatColor.GOLD.toString() + "Sapling")
+                .name(ChatColor.GOLD + "Sapling")
                 .lore(ChatColor.GRAY + "Generate a tree on demand");
+    }
+
+    public static ItemBuilder melon() {
+        return new ItemBuilder(Material.MELON_SLICE)
+                .name(ChatColor.GREEN + "Melon")
+                .lore(ChatColor.GRAY + "Restores 1 heart and 1 shank");
     }
 
     @Getter
@@ -167,7 +173,7 @@ public class ItemBuilder {
     @Setter
     private boolean unbreakable = false;
 
-    private List<String> lore = new ArrayList<>();
+    private final List<String> lore = new ArrayList<>();
 
     public ItemStack build() {
         ItemStack stack = new ItemStack(material);
