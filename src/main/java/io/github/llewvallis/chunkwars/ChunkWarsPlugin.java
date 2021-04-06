@@ -59,6 +59,7 @@ public class ChunkWarsPlugin extends JavaPlugin {
         register(new TramplingHandler());
         register(new MelonHandler());
         register(new HoeHandler());
+        register(new HopperHandler());
         new BorderOutlineHandler();
 
         WorldManager.instance.cleanArenas();

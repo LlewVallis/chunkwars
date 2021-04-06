@@ -174,6 +174,12 @@ public class ItemBuilder {
                 .name(ChatColor.GREEN + "Melon Seeds");
     }
 
+    public static ItemBuilder hopper() {
+        return new ItemBuilder(Material.HOPPER)
+                .name(ChatColor.WHITE + "Hopper")
+                .lore(ChatColor.GRAY + "Sucks in items within a 5x5x5 cube");
+    }
+
     @Getter
     private final Material material;
 
