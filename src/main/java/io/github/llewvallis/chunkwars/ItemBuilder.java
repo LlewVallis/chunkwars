@@ -89,6 +89,7 @@ public class ItemBuilder {
         return new ItemBuilder(Material.STONE_HOE)
                 .name(ChatColor.GRAY + "Hardened Hoe")
                 .damage(1.0)
+                .lore(ChatColor.GRAY + "Creates a single farm tile")
                 .lore(ChatColor.GRAY + "Deals no extra damage");
     }
 
@@ -166,6 +167,11 @@ public class ItemBuilder {
         return new ItemBuilder(Material.MELON_SLICE)
                 .name(ChatColor.GREEN + "Melon")
                 .lore(ChatColor.GRAY + "Restores 1 heart and 1 shank");
+    }
+
+    public static ItemBuilder melonSeeds() {
+        return new ItemBuilder(Material.MELON_SEEDS)
+                .name(ChatColor.GREEN + "Melon Seeds");
     }
 
     @Getter

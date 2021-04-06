@@ -15,7 +15,7 @@ import org.bukkit.util.Vector;
 
 public class MelonHandler implements Listener {
 
-    private static final int MELON_DROP_DELAY = 15 * 20;
+    private static final int MELON_DROP_DELAY = 30 * 20;
     private static final int MELON_DROP_COUNT = 3;
     private static final int MELON_LIFETIME = 10 * 20;
 

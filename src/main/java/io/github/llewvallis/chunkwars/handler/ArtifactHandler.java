@@ -49,7 +49,8 @@ public class ArtifactHandler implements Listener {
             ),
             new SoldItem(ItemBuilder::crate, List.of(new Cost(Currency.WOOD, 5), new Cost(Currency.DIRT, 5))),
             new SoldItem(ItemBuilder::sapling, List.of(new Cost(Currency.DIRT, 20))),
-            null, null, null,
+            new SoldItem(ItemBuilder::melonSeeds, List.of(new Cost(Currency.MELON, 15))),
+            null, null,
             new SoldItem(
                     ItemBuilder::hardenedSword,
                     List.of(new Cost(Currency.STONE, 30)),
@@ -157,7 +158,8 @@ public class ArtifactHandler implements Listener {
         WOOD(Material.STICK, ChatColor.DARK_GREEN, "wood"),
         DIRT(Material.BROWN_DYE, ChatColor.GOLD, "dirt"),
         STONE(Material.FIREWORK_STAR, ChatColor.GRAY, "stone"),
-        IRON(Material.IRON_INGOT, ChatColor.WHITE, "iron");
+        IRON(Material.IRON_INGOT, ChatColor.WHITE, "iron"),
+        MELON(Material.MELON_SLICE, ChatColor.GREEN, "melon");
 
         private final Material material;
         private final ChatColor color;
