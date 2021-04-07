@@ -100,6 +100,25 @@ public class ArtifactHandler implements Listener {
             null,
             null,
             new SoldItem(
+                    ItemBuilder::tntBundle,
+                    List.of(new Cost(Currency.SPORE, 50), new Cost(Currency.DIRT, 50), new Cost(Currency.IRON, 15)),
+                    List.of(new Cost(Currency.SPORE, 40), new Cost(Currency.DIRT, 20), new Cost(Currency.IRON, 5))
+            ),
+            new SoldItem(ItemBuilder::activatedSporeBlockBundle, List.of(new Cost(Currency.SPORE, 20))),
+            new SoldItem(
+                    ItemBuilder::congealedMelonBundle,
+                    List.of(new Cost(Currency.MELON, 25), new Cost(Currency.SPORE, 5))
+            ),
+            new SoldItem(
+                    ItemBuilder::piston,
+                    List.of(new Cost(Currency.STONE, 50), new Cost(Currency.SPORE, 10))
+            ),
+            new SoldItem(
+                    ItemBuilder::stickyPiston,
+                    List.of(new Cost(Currency.STONE, 50), new Cost(Currency.MELON, 20), new Cost(Currency.SPORE, 10))
+            ),
+            null,
+            new SoldItem(
                     ItemBuilder::melonSeeds,
                     List.of(new Cost(Currency.DIRT, 30)),
                     List.of(new Cost(Currency.MELON, 15))
@@ -118,13 +137,6 @@ public class ArtifactHandler implements Listener {
             null, null,
             new SoldItem(ItemBuilder::crate, List.of(new Cost(Currency.WOOD, 5), new Cost(Currency.DIRT, 5))),
             new SoldItem(ItemBuilder::hopper, List.of(new Cost(Currency.IRON, 5), new Cost(Currency.STONE, 20))),
-            null, null, null, null,
-            new SoldItem(
-                    ItemBuilder::tntBundle,
-                    List.of(new Cost(Currency.SPORE, 50), new Cost(Currency.DIRT, 50), new Cost(Currency.IRON, 15)),
-                    List.of(new Cost(Currency.SPORE, 40), new Cost(Currency.DIRT, 20), new Cost(Currency.IRON, 5))
-            ),
-            new SoldItem(ItemBuilder::activatedSporeBlockBundle, List.of(new Cost(Currency.SPORE, 20))),
             null, null, null, null,
             new SoldItem(ItemBuilder::borderTome, List.of(
                     new Cost(Currency.IRON, 50),

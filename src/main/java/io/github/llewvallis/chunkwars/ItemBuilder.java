@@ -233,6 +233,25 @@ public class ItemBuilder {
         return activatedSporeBlock().amount(8);
     }
 
+    public static ItemBuilder congealedMelon() {
+        return new ItemBuilder(Material.SLIME_BLOCK)
+                .name(ChatColor.GREEN + "Congealed Melon");
+    }
+
+    public static ItemBuilder congealedMelonBundle() {
+        return congealedMelon().amount(16);
+    }
+
+    public static ItemBuilder piston() {
+        return new ItemBuilder(Material.PISTON)
+                .name(ChatColor.GRAY + "Piston");
+    }
+
+    public static ItemBuilder stickyPiston() {
+        return new ItemBuilder(Material.STICKY_PISTON)
+                .name(ChatColor.GRAY + "Sticky Piston");
+    }
+
     @Getter
     private final Material material;
 
