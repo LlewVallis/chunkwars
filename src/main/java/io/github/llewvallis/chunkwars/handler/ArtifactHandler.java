@@ -24,6 +24,9 @@ import java.util.function.Supplier;
 
 public class ArtifactHandler implements Listener {
 
+    private static final int SHOP_WIDTH = 9;
+    private static final int SHOP_HEIGHT = 6;
+
     private final Map<Inventory, Player> shopInventories = new WeakHashMap<>();
 
     private final List<SoldItem> soldItems = Arrays.asList(
@@ -47,23 +50,12 @@ public class ArtifactHandler implements Listener {
                     List.of(new Cost(Currency.WOOD, 10)),
                     List.of(new Cost(Currency.WOOD, 5))
             ),
-            new SoldItem(ItemBuilder::crate, List.of(new Cost(Currency.WOOD, 5), new Cost(Currency.DIRT, 5))),
-            new SoldItem(ItemBuilder::sapling, List.of(new Cost(Currency.DIRT, 20))),
             new SoldItem(
-                    ItemBuilder::melonSeeds,
-                    List.of(new Cost(Currency.DIRT, 30)),
-                    List.of(new Cost(Currency.MELON, 15))
+                    ItemBuilder::crossbow,
+                    List.of(new Cost(Currency.STONE, 5), new Cost(Currency.WOOD, 30)),
+                    List.of(new Cost(Currency.STONE, 5), new Cost(Currency.WOOD, 10))
             ),
-            new SoldItem(
-                    ItemBuilder::juice,
-                    List.of(new Cost(Currency.MELON, 15)),
-                    List.of(new Cost(Currency.MELON, 30))
-            ),
-            new SoldItem(
-                    ItemBuilder::rottenCore,
-                    List.of(new Cost(Currency.WOOD, 40), new Cost(Currency.DIRT, 30), new Cost(Currency.MELON, 20)),
-                    List.of(new Cost(Currency.WOOD, 20), new Cost(Currency.DIRT, 40), new Cost(Currency.MELON, 60))
-            ),
+            new SoldItem(ItemBuilder::arrowPair, List.of(new Cost(Currency.WOOD, 15))),
             new SoldItem(
                     ItemBuilder::hardenedSword,
                     List.of(new Cost(Currency.STONE, 30)),
@@ -88,13 +80,7 @@ public class ArtifactHandler implements Listener {
                     ItemBuilder::hardenedHoe,
                     List.of(new Cost(Currency.STONE, 10))
             ),
-            new SoldItem(
-                    ItemBuilder::crossbow,
-                    List.of(new Cost(Currency.STONE, 5), new Cost(Currency.WOOD, 30)),
-                    List.of(new Cost(Currency.STONE, 5), new Cost(Currency.WOOD, 10))
-            ),
-            new SoldItem(ItemBuilder::arrowPair, List.of(new Cost(Currency.WOOD, 15))),
-            null, null,
+            null,
             new SoldItem(
                     ItemBuilder::refinedSword,
                     List.of(new Cost(Currency.IRON, 30)),
@@ -111,13 +97,40 @@ public class ArtifactHandler implements Listener {
                     List.of(new Cost(Currency.IRON, 5))
             ),
             new SoldItem(ItemBuilder::refinedShovel, List.of(new Cost(Currency.IRON, 10))),
+            null,
+            null,
+            new SoldItem(
+                    ItemBuilder::melonSeeds,
+                    List.of(new Cost(Currency.DIRT, 30)),
+                    List.of(new Cost(Currency.MELON, 15))
+            ),
+            new SoldItem(
+                    ItemBuilder::juice,
+                    List.of(new Cost(Currency.MELON, 15)),
+                    List.of(new Cost(Currency.MELON, 30))
+            ),
+            new SoldItem(
+                    ItemBuilder::rottenCore,
+                    List.of(new Cost(Currency.WOOD, 40), new Cost(Currency.DIRT, 30), new Cost(Currency.MELON, 20)),
+                    List.of(new Cost(Currency.WOOD, 20), new Cost(Currency.DIRT, 40), new Cost(Currency.MELON, 60))
+            ),
+            new SoldItem(ItemBuilder::sapling, List.of(new Cost(Currency.DIRT, 20))),
+            null, null,
+            new SoldItem(ItemBuilder::crate, List.of(new Cost(Currency.WOOD, 5), new Cost(Currency.DIRT, 5))),
             new SoldItem(ItemBuilder::hopper, List.of(new Cost(Currency.IRON, 5), new Cost(Currency.STONE, 20))),
+            null, null, null, null,
+            new SoldItem(
+                    ItemBuilder::tntBundle,
+                    List.of(new Cost(Currency.SPORE, 50), new Cost(Currency.DIRT, 50), new Cost(Currency.IRON, 15)),
+                    List.of(new Cost(Currency.SPORE, 40), new Cost(Currency.DIRT, 20), new Cost(Currency.IRON, 5))
+            ),
+            new SoldItem(ItemBuilder::activatedSporeBlockBundle, List.of(new Cost(Currency.SPORE, 20))),
+            null, null, null, null,
             new SoldItem(ItemBuilder::borderTome, List.of(
                     new Cost(Currency.IRON, 50),
-                    new Cost(Currency.STONE, 75),
-                    new Cost(Currency.WOOD, 100),
-                    new Cost(Currency.DIRT, 125))
-            )
+                    new Cost(Currency.SPORE, 50),
+                    new Cost(Currency.DIRT, 200)
+            ))
     );
 
     @Getter
@@ -173,7 +186,8 @@ public class ArtifactHandler implements Listener {
         DIRT(Material.BROWN_DYE, ChatColor.GOLD, "dirt"),
         STONE(Material.FIREWORK_STAR, ChatColor.GRAY, "stone"),
         IRON(Material.IRON_INGOT, ChatColor.WHITE, "iron"),
-        MELON(Material.MELON_SLICE, ChatColor.GREEN, "melon");
+        MELON(Material.MELON_SLICE, ChatColor.GREEN, "melon"),
+        SPORE(Material.NETHER_WART, ChatColor.RED, "spore");
 
         private final Material material;
         private final ChatColor color;
@@ -181,7 +195,7 @@ public class ArtifactHandler implements Listener {
     }
 
     private void displayShop(Player player) {
-        Inventory inventory = Bukkit.createInventory(null, 27, "Artifact shop");
+        Inventory inventory = Bukkit.createInventory(null, SHOP_WIDTH * SHOP_HEIGHT, "Artifact shop");
         setShopSlots(inventory, player);
         shopInventories.put(inventory, player);
         player.openInventory(inventory);
@@ -211,7 +225,10 @@ public class ArtifactHandler implements Listener {
                 inventory.setItem(slot, stack);
             }
 
-            slot++;
+            slot += SHOP_WIDTH;
+            if (slot >= SHOP_WIDTH * SHOP_HEIGHT) {
+                slot = slot - SHOP_WIDTH * SHOP_HEIGHT + 1;
+            }
         }
     }
 

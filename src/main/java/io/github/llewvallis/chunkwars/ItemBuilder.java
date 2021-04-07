@@ -204,15 +204,33 @@ public class ItemBuilder {
                 .name(ChatColor.GREEN + "Rotten Core");
     }
 
+    public static ItemBuilder hopper() {
+        return new ItemBuilder(Material.HOPPER)
+                .name(ChatColor.WHITE + "Hopper")
+                .lore(ChatColor.GRAY + "Sucks in items within a 5x5x5 cube");
+    }
+
     public static ItemBuilder spore() {
         return new ItemBuilder(Material.NETHER_WART)
                 .name(ChatColor.RED + "Spore");
     }
 
-    public static ItemBuilder hopper() {
-        return new ItemBuilder(Material.HOPPER)
-                .name(ChatColor.WHITE + "Hopper")
-                .lore(ChatColor.GRAY + "Sucks in items within a 5x5x5 cube");
+    public static ItemBuilder tnt() {
+        return new ItemBuilder(Material.TNT)
+                .name(ChatColor.RED + "TNT");
+    }
+
+    public static ItemBuilder tntBundle() {
+        return tnt().amount(2);
+    }
+
+    public static ItemBuilder activatedSporeBlock() {
+        return new ItemBuilder(Material.REDSTONE_BLOCK)
+                .name(ChatColor.RED + "Activated Spore Block");
+    }
+
+    public static ItemBuilder activatedSporeBlockBundle() {
+        return activatedSporeBlock().amount(8);
     }
 
     @Getter
