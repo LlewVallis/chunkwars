@@ -61,6 +61,7 @@ public class ChunkWarsPlugin extends JavaPlugin {
         register(new HoeHandler());
         register(new HopperHandler());
         register(new RottenCoreHandler());
+        register(new PotionHandler());
         new BorderOutlineHandler();
 
         WorldManager.instance.cleanArenas();
