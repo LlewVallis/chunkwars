@@ -204,6 +204,11 @@ public class ItemBuilder {
                 .name(ChatColor.GREEN + "Rotten Core");
     }
 
+    public static ItemBuilder spore() {
+        return new ItemBuilder(Material.NETHER_WART)
+                .name(ChatColor.RED + "Spore");
+    }
+
     public static ItemBuilder hopper() {
         return new ItemBuilder(Material.HOPPER)
                 .name(ChatColor.WHITE + "Hopper")

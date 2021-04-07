@@ -104,7 +104,9 @@ public class ToolHandler implements Listener {
 
     public static final Set<Material> HARDENED_DIRTS = Set.of(
             Material.FARMLAND,
-            Material.GRASS_PATH
+            Material.GRASS_PATH,
+            Material.SOUL_SAND,
+            Material.SOUL_SOIL
     );
 
     public static final Set<Material> HARDENED_DIRT_TOOLS = Set.of(
@@ -125,7 +127,7 @@ public class ToolHandler implements Listener {
 
    public static final Set<Material> DIRT_TOOLS = new HashSet<>(Set.of(
             Material.WOODEN_SHOVEL
-    ));
+   ));
    static { DIRT_TOOLS.addAll(HARDENED_DIRT_TOOLS); }
 
     private final Map<Material, Integer> toolUses = new HashMap<>();

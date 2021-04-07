@@ -53,6 +53,8 @@ public class ResourceHandler implements Listener {
 
             new Resource(Material.FARMLAND, null, 0, ItemBuilder.dirt().amount(2), ChatColor.GOLD, "Dirt"),
             new Resource(Material.GRASS_PATH, null, 0, ItemBuilder.dirt().amount(2), ChatColor.GOLD, "Dirt"),
+            new Resource(Material.SOUL_SAND, null, 0, ItemBuilder.dirt().amount(5), ChatColor.GOLD, "Dirt"),
+            new Resource(Material.SOUL_SOIL, null, 0, ItemBuilder.dirt().amount(5), ChatColor.GOLD, "Dirt"),
 
             new Resource(Material.STONE, null, 0, ItemBuilder.stone(), ChatColor.GRAY, "Stone"),
             new Resource(Material.COBBLESTONE, null, 0, ItemBuilder.stone(), ChatColor.GRAY, "Stone"),

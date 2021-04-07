@@ -89,7 +89,12 @@ public class RottenCoreHandler implements Listener {
                     Block blockAbove = block.getRelative(BlockFace.UP);
                     if (foliageMappings.containsKey(blockAbove.getType())) {
                         if (foliageCarriers.contains(block.getType())) {
-                            blockAbove.setType(foliageMappings.get(blockAbove.getType()));
+                            Material newMaterial = foliageMappings.get(blockAbove.getType());
+                            blockAbove.setType(newMaterial);
+
+                            if (newMaterial == Material.NETHER_WART) {
+                                SporeHandler.growSpore(blockAbove.getLocation());
+                            }
                         } else {
                             blockAbove.setType(Material.AIR);
                         }
