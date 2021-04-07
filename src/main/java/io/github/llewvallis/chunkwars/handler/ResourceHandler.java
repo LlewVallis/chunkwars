@@ -47,8 +47,9 @@ public class ResourceHandler implements Listener {
             new Resource(Material.MYCELIUM, null, 0, ItemBuilder.dirt(), ChatColor.GOLD, "Dirt"),
             new Resource(Material.PODZOL, null, 0, ItemBuilder.dirt(), ChatColor.GOLD, "Dirt"),
             new Resource(Material.COARSE_DIRT, null, 0, ItemBuilder.dirt(), ChatColor.GOLD, "Dirt"),
-            new Resource(Material.NETHERRACK, null, 0, ItemBuilder.dirt().amount(5), ChatColor.GOLD, "Dirt"),
-            new Resource(Material.CRIMSON_NYLIUM, null, 0, ItemBuilder.dirt().amount(5), ChatColor.GOLD, "Dirt"),
+            new Resource(Material.NETHERRACK, null, 0, ItemBuilder.dirt().amount(3), ChatColor.GOLD, "Dirt"),
+            new Resource(Material.CRIMSON_NYLIUM, null, 0, ItemBuilder.dirt().amount(3), ChatColor.GOLD, "Dirt"),
+            new Resource(Material.WARPED_NYLIUM, null, 0, ItemBuilder.dirt().amount(3), ChatColor.GOLD, "Dirt"),
 
             new Resource(Material.FARMLAND, null, 0, ItemBuilder.dirt().amount(2), ChatColor.GOLD, "Dirt"),
             new Resource(Material.GRASS_PATH, null, 0, ItemBuilder.dirt().amount(2), ChatColor.GOLD, "Dirt"),

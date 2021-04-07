@@ -1,5 +1,6 @@
 package io.github.llewvallis.chunkwars.handler;
 
+import io.github.llewvallis.chunkwars.InventoryUtil;
 import io.github.llewvallis.chunkwars.world.ArenaPool;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -96,11 +97,8 @@ public class HoeHandler implements Listener {
         }
 
         if (e.getPlayer().getGameMode() == GameMode.SURVIVAL && ArenaPool.instance.inArena(e.getPlayer())) {
-            PlayerInventory inventory = e.getPlayer().getInventory();
-            if (HOES.contains(inventory.getItemInMainHand().getType())) {
-                inventory.setItemInMainHand(null);
-            } else {
-                inventory.setItemInOffHand(null);
+            if (e.getPlayer().getGameMode() == GameMode.SURVIVAL && ArenaPool.instance.inArena(e.getPlayer())) {
+                InventoryUtil.removeHeldItem(e.getPlayer());
             }
         }
     }

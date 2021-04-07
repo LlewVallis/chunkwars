@@ -174,6 +174,11 @@ public class ItemBuilder {
                 .lore(ChatColor.GRAY + "Restores 1 heart and 1 shank");
     }
 
+    public static ItemBuilder melonSeeds() {
+        return new ItemBuilder(Material.MELON_SEEDS)
+                .name(ChatColor.GREEN + "Melon Seeds");
+    }
+
     public static ItemBuilder juice() {
         return new ItemBuilder(Material.POTION)
                 .name(ChatColor.GREEN + "Juice")
@@ -189,9 +194,9 @@ public class ItemBuilder {
                 });
     }
 
-    public static ItemBuilder melonSeeds() {
-        return new ItemBuilder(Material.MELON_SEEDS)
-                .name(ChatColor.GREEN + "Melon Seeds");
+    public static ItemBuilder rottenCore() {
+        return new ItemBuilder(Material.MAGMA_CREAM)
+                .name(ChatColor.GREEN + "Rotten Core");
     }
 
     public static ItemBuilder hopper() {
