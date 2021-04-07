@@ -142,6 +142,10 @@ public class ArtifactHandler implements Listener {
                     new Cost(Currency.IRON, 50),
                     new Cost(Currency.SPORE, 50),
                     new Cost(Currency.DIRT, 200)
+            )),
+            new SoldItem(ItemBuilder::restorationKit, List.of(
+                    new Cost(Currency.DIRT, 150),
+                    new Cost(Currency.STONE, 100)
             ))
     );
 

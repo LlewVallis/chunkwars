@@ -148,12 +148,6 @@ public class ItemBuilder {
                 .lore(ChatColor.GRAY + "Deals no extra damage");
     }
 
-    public static ItemBuilder borderTome() {
-        return new ItemBuilder(Material.ENCHANTED_BOOK)
-                .name(ChatColor.LIGHT_PURPLE + "Border Tome")
-                .lore(ChatColor.GRAY + "Disables the enemy's border for 10 seconds");
-    }
-
     public static ItemBuilder dirt() {
         return new ItemBuilder(Material.BROWN_DYE)
                 .name(ChatColor.GOLD + "Dirt");
@@ -250,6 +244,17 @@ public class ItemBuilder {
     public static ItemBuilder stickyPiston() {
         return new ItemBuilder(Material.STICKY_PISTON)
                 .name(ChatColor.GRAY + "Sticky Piston");
+    }
+
+    public static ItemBuilder restorationKit() {
+        return new ItemBuilder(Material.CONDUIT)
+                .name(ChatColor.LIGHT_PURPLE + "Restoration Kit");
+    }
+
+    public static ItemBuilder borderTome() {
+        return new ItemBuilder(Material.ENCHANTED_BOOK)
+                .name(ChatColor.LIGHT_PURPLE + "Border Tome")
+                .lore(ChatColor.GRAY + "Disables the enemy's border for 10 seconds");
     }
 
     @Getter

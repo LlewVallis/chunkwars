@@ -15,7 +15,7 @@ import java.util.Set;
 
 public class RottenCoreHandler implements Listener {
 
-    private final Map<Material, Material> mappings = Map.ofEntries(
+    private static final Map<Material, Material> MAPPINGS = Map.ofEntries(
             Map.entry(Material.ACACIA_WOOD, Material.CRIMSON_HYPHAE),
             Map.entry(Material.BIRCH_WOOD, Material.CRIMSON_HYPHAE),
             Map.entry(Material.DARK_OAK_WOOD, Material.CRIMSON_HYPHAE),
@@ -43,14 +43,14 @@ public class RottenCoreHandler implements Listener {
             Map.entry(Material.GRASS_PATH, Material.SOUL_SOIL)
     );
 
-    private final Set<Material> foliageCarriers = Set.of(
+    private static final Set<Material> FOLIAGE_CARRIERS = Set.of(
             Material.PODZOL,
             Material.GRASS_BLOCK,
             Material.MYCELIUM,
             Material.FARMLAND
     );
 
-    private final Map<Material, Material> foliageMappings = Map.of(
+    private static final Map<Material, Material> FOLIAGE_MAPPINGS = Map.of(
             Material.MELON_STEM, Material.NETHER_WART,
             Material.RED_MUSHROOM, Material.WARPED_ROOTS,
             Material.BROWN_MUSHROOM, Material.WARPED_ROOTS,
@@ -81,15 +81,15 @@ public class RottenCoreHandler implements Listener {
 
                     Block block = e.getClickedBlock().getRelative(deltaX, deltaY, deltaZ);
 
-                    Material newType = mappings.get(block.getType());
+                    Material newType = MAPPINGS.get(block.getType());
                     if (newType == null) {
                         continue;
                     }
 
                     Block blockAbove = block.getRelative(BlockFace.UP);
-                    if (foliageMappings.containsKey(blockAbove.getType())) {
-                        if (foliageCarriers.contains(block.getType())) {
-                            Material newMaterial = foliageMappings.get(blockAbove.getType());
+                    if (FOLIAGE_MAPPINGS.containsKey(blockAbove.getType())) {
+                        if (FOLIAGE_CARRIERS.contains(block.getType())) {
+                            Material newMaterial = FOLIAGE_MAPPINGS.get(blockAbove.getType());
                             blockAbove.setType(newMaterial);
 
                             if (newMaterial == Material.NETHER_WART) {

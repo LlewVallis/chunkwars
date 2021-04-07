@@ -47,6 +47,7 @@ public class ResourceHandler implements Listener {
             new Resource(Material.MYCELIUM, null, 0, ItemBuilder.dirt(), ChatColor.GOLD, "Dirt"),
             new Resource(Material.PODZOL, null, 0, ItemBuilder.dirt(), ChatColor.GOLD, "Dirt"),
             new Resource(Material.COARSE_DIRT, null, 0, ItemBuilder.dirt(), ChatColor.GOLD, "Dirt"),
+
             new Resource(Material.NETHERRACK, null, 0, ItemBuilder.dirt().amount(3), ChatColor.GOLD, "Dirt"),
             new Resource(Material.CRIMSON_NYLIUM, null, 0, ItemBuilder.dirt().amount(3), ChatColor.GOLD, "Dirt"),
             new Resource(Material.WARPED_NYLIUM, null, 0, ItemBuilder.dirt().amount(3), ChatColor.GOLD, "Dirt"),
@@ -56,12 +57,19 @@ public class ResourceHandler implements Listener {
             new Resource(Material.SOUL_SAND, null, 0, ItemBuilder.dirt().amount(5), ChatColor.GOLD, "Dirt"),
             new Resource(Material.SOUL_SOIL, null, 0, ItemBuilder.dirt().amount(5), ChatColor.GOLD, "Dirt"),
 
+            new Resource(Material.GRAVEL, null, 0, ItemBuilder.dirt().amount(2), ChatColor.GOLD, "Dirt"),
+            new Resource(Material.LIGHT_GRAY_CONCRETE_POWDER, null, 0, ItemBuilder.dirt().amount(2), ChatColor.GOLD, "Dirt"),
+
             new Resource(Material.STONE, null, 0, ItemBuilder.stone(), ChatColor.GRAY, "Stone"),
             new Resource(Material.COBBLESTONE, null, 0, ItemBuilder.stone(), ChatColor.GRAY, "Stone"),
             new Resource(Material.ANDESITE, null, 0, ItemBuilder.stone(), ChatColor.GRAY, "Stone"),
 
             new Resource(Material.BASALT, null, 0, ItemBuilder.stone().amount(2), ChatColor.GRAY, "Stone"),
             new Resource(Material.POLISHED_BASALT, null, 0, ItemBuilder.stone().amount(2), ChatColor.GRAY, "Stone"),
+
+            new Resource(Material.DEAD_BUBBLE_CORAL_BLOCK, null, 0, ItemBuilder.stone().amount(3), ChatColor.GRAY, "Stone"),
+            new Resource(Material.DEAD_FIRE_CORAL_BLOCK, null, 0, ItemBuilder.stone().amount(3), ChatColor.GRAY, "Stone"),
+            new Resource(Material.DEAD_HORN_CORAL_BLOCK, null, 0, ItemBuilder.stone().amount(3), ChatColor.GRAY, "Stone"),
 
             new Resource(Material.POLISHED_BLACKSTONE_BRICKS, Material.CRACKED_POLISHED_BLACKSTONE_BRICKS, 1200,
                     ItemBuilder.stone().amount(5), ChatColor.GRAY, "Stone"),
