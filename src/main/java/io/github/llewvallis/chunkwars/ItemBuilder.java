@@ -184,7 +184,6 @@ public class ItemBuilder {
 
                     meta.addCustomEffect(new PotionEffect(PotionEffectType.REGENERATION, 4 * 20, 3), true);
                     meta.addCustomEffect(new PotionEffect(PotionEffectType.ABSORPTION, 4 * 20, 0), true);
-                    meta.addCustomEffect(new PotionEffect(PotionEffectType.SLOW, 4 * 20, 10), true);
                     meta.addCustomEffect(new PotionEffect(PotionEffectType.WEAKNESS, 4 * 20, 127), true);
                     meta.setColor(Color.fromRGB(0, 255, 0));
                     meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
