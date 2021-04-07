@@ -49,7 +49,11 @@ public class ArtifactHandler implements Listener {
             ),
             new SoldItem(ItemBuilder::crate, List.of(new Cost(Currency.WOOD, 5), new Cost(Currency.DIRT, 5))),
             new SoldItem(ItemBuilder::sapling, List.of(new Cost(Currency.DIRT, 20))),
-            new SoldItem(ItemBuilder::melonSeeds, List.of(new Cost(Currency.MELON, 15))),
+            new SoldItem(
+                    ItemBuilder::melonSeeds,
+                    List.of(new Cost(Currency.DIRT, 30)),
+                    List.of(new Cost(Currency.MELON, 15))
+            ),
             new SoldItem(
                     ItemBuilder::juice,
                     List.of(new Cost(Currency.MELON, 15)),
