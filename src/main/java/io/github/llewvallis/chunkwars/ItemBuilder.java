@@ -5,15 +5,20 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 @Accessors(fluent = true)
 @RequiredArgsConstructor
@@ -169,6 +174,21 @@ public class ItemBuilder {
                 .lore(ChatColor.GRAY + "Restores 1 heart and 1 shank");
     }
 
+    public static ItemBuilder juice() {
+        return new ItemBuilder(Material.POTION)
+                .name(ChatColor.GREEN + "Juice")
+                .modifier(stack -> {
+                    PotionMeta meta = (PotionMeta) stack.getItemMeta();
+
+                    meta.addCustomEffect(new PotionEffect(PotionEffectType.REGENERATION, 5 * 20, 1), true);
+                    meta.addCustomEffect(new PotionEffect(PotionEffectType.ABSORPTION, 5 * 20, 0), true);
+                    meta.addCustomEffect(new PotionEffect(PotionEffectType.SLOW, 5 * 20, 1), true);
+                    meta.setColor(Color.fromRGB(0, 255, 0));
+
+                    stack.setItemMeta(meta);
+                });
+    }
+
     public static ItemBuilder melonSeeds() {
         return new ItemBuilder(Material.MELON_SEEDS)
                 .name(ChatColor.GREEN + "Melon Seeds");
@@ -193,6 +213,8 @@ public class ItemBuilder {
     private boolean unbreakable = false;
 
     private final List<String> lore = new ArrayList<>();
+
+    private final List<Consumer<ItemStack>> modifiers = new ArrayList<>();
 
     public ItemStack build() {
         ItemStack stack = new ItemStack(material);
@@ -221,11 +243,21 @@ public class ItemBuilder {
         }
 
         stack.setItemMeta(meta);
+
+        for (Consumer<ItemStack> modifier : modifiers) {
+            modifier.accept(stack);
+        }
+
         return stack;
     }
 
     public ItemBuilder lore(String lore) {
         this.lore.add(lore);
+        return this;
+    }
+
+    public ItemBuilder modifier(Consumer<ItemStack> modifier) {
+        this.modifiers.add(modifier);
         return this;
     }
 }
