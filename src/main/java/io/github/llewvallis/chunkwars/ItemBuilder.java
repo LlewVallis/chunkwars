@@ -105,10 +105,13 @@ public class ItemBuilder {
                 .lore(ChatColor.GRAY + "Deals 6-11 hearts");
     }
 
-    public static ItemBuilder arrowPair() {
+    public static ItemBuilder arrow() {
         return new ItemBuilder(Material.ARROW)
-                .name(ChatColor.GRAY + "Arrow")
-                .amount(2);
+                .name(ChatColor.GRAY + "Arrow");
+    }
+
+    public static ItemBuilder arrowPair() {
+        return arrow().amount(2);
     }
 
     public static ItemBuilder iron() {
