@@ -19,21 +19,28 @@ public class SporeHandler implements Listener {
         if (e.getBlock().getType() == Material.NETHER_WART && e.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             e.setCancelled(true);
 
-            Ageable blockData = (Ageable) e.getBlock().getBlockData();
-
-            if (blockData.getAge() >= blockData.getMaximumAge()) {
-                blockData.setAge(0);
-                e.getBlock().setBlockData(blockData);
+            if (breakSpore(e.getBlock())) {
                 e.getPlayer().getInventory().addItem(ItemBuilder.spore().build());
-
                 e.getPlayer().sendActionBar(ChatColor.RED + "+1 Spore");
-
-                Location location = e.getBlock().getLocation();
-                location.getWorld().playSound(location, Sound.ITEM_NETHER_WART_PLANT, SoundCategory.BLOCKS, 1, 0.25f);
-
-                growSpore(e.getBlock().getLocation());
             }
         }
+    }
+
+    public static boolean breakSpore(Block block) {
+        Ageable blockData = (Ageable) block.getBlockData();
+
+        if (blockData.getAge() >= blockData.getMaximumAge()) {
+            blockData.setAge(0);
+            block.setBlockData(blockData);
+
+            Location location = block.getLocation();
+            location.getWorld().playSound(location, Sound.ITEM_NETHER_WART_PLANT, SoundCategory.BLOCKS, 1, 0.25f);
+
+            growSpore(block.getLocation());
+            return true;
+        }
+
+        return false;
     }
 
     @EventHandler

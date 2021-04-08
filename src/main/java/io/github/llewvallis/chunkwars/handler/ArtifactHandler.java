@@ -137,7 +137,12 @@ public class ArtifactHandler implements Listener {
             null, null,
             new SoldItem(ItemBuilder::crate, List.of(new Cost(Currency.WOOD, 5), new Cost(Currency.DIRT, 5))),
             new SoldItem(ItemBuilder::hopper, List.of(new Cost(Currency.IRON, 5), new Cost(Currency.STONE, 20))),
-            null, null, null, null,
+            new SoldItem(
+                    ItemBuilder::harvester,
+                    List.of(new Cost(Currency.IRON, 15), new Cost(Currency.STONE, 30)),
+                    List.of(new Cost(Currency.IRON, 20), new Cost(Currency.SPORE, 10), new Cost(Currency.STONE, 40))
+            ),
+            null, null, null,
             new SoldItem(ItemBuilder::borderTome, List.of(
                     new Cost(Currency.IRON, 50),
                     new Cost(Currency.SPORE, 50),

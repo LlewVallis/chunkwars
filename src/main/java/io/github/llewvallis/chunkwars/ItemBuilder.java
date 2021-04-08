@@ -245,6 +245,11 @@ public class ItemBuilder {
                 .name(ChatColor.GRAY + "Sticky Piston");
     }
 
+    public static ItemBuilder harvester() {
+        return new ItemBuilder(Material.OBSERVER)
+                .name(ChatColor.WHITE + "Harvester");
+    }
+
     public static ItemBuilder restorationKit() {
         return new ItemBuilder(Material.CONDUIT)
                 .name(ChatColor.LIGHT_PURPLE + "Restoration Kit");

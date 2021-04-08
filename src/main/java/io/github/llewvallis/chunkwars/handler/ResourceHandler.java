@@ -3,7 +3,9 @@ package io.github.llewvallis.chunkwars.handler;
 import io.github.llewvallis.chunkwars.ChunkWarsPlugin;
 import io.github.llewvallis.chunkwars.ItemBuilder;
 import io.github.llewvallis.chunkwars.world.ArenaPool;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -23,7 +25,7 @@ import java.util.stream.Collectors;
 
 public class ResourceHandler implements Listener {
 
-    private final Set<Resource> resources = Set.of(
+    private static final Set<Resource> RESOURCES = Set.of(
             new Resource(Material.DARK_OAK_WOOD, Material.STRIPPED_DARK_OAK_WOOD, 600,
                     ItemBuilder.wood(), ChatColor.DARK_GREEN, "Wood"),
             new Resource(Material.SPRUCE_WOOD, Material.STRIPPED_SPRUCE_WOOD, 600,
@@ -82,27 +84,27 @@ public class ResourceHandler implements Listener {
                     ItemBuilder.iron().amount(2), ChatColor.GRAY, "Iron")
     );
 
-    private final Map<Material, Resource> resourceMappings = resources.stream()
+    public static final Map<Material, Resource> RESOURCE_MAPPINGS = RESOURCES.stream()
             .collect(Collectors.toMap(
                     resource -> resource.source,
                     Function.identity()
             ));
 
-    private final Map<Material, Resource> resourceMappingsInverse = resources.stream()
+    public static final Map<Material, Resource> RESOURCE_MAPPINGS_INVERSE = RESOURCES.stream()
             .filter(resource -> resource.broken != null)
             .collect(Collectors.toMap(
                     resource -> resource.broken,
                     Function.identity()
             ));
 
-    @RequiredArgsConstructor
-    private static class Resource {
-        private final Material source;
-        private final Material broken;
-        private final int regenTime;
-        private final ItemBuilder item;
-        private final ChatColor messageColor;
-        private final String name;
+    @Value
+    public static class Resource {
+        Material source;
+        Material broken;
+        int regenTime;
+        ItemBuilder item;
+        ChatColor messageColor;
+        String name;
     }
 
     @EventHandler
@@ -118,7 +120,7 @@ public class ResourceHandler implements Listener {
     private void onPistonMove(List<Block> blocks, BlockFace direction) {
         for (Block block : blocks) {
             Location destination = block.getLocation().add(direction.getDirection());
-            Resource resource = resourceMappingsInverse.get(block.getType());
+            Resource resource = RESOURCE_MAPPINGS_INVERSE.get(block.getType());
 
             if (resource != null) {
                 Bukkit.getScheduler().scheduleSyncDelayedTask(ChunkWarsPlugin.instance, () -> {
@@ -137,8 +139,8 @@ public class ResourceHandler implements Listener {
         Player player = e.getPlayer();
 
         if (player.getGameMode() != GameMode.CREATIVE && ArenaPool.instance.inArena(block)) {
-            if (resourceMappings.containsKey(material)) {
-                Resource resource = resourceMappings.get(material);
+            if (RESOURCE_MAPPINGS.containsKey(material)) {
+                Resource resource = RESOURCE_MAPPINGS.get(material);
 
                 if (resource.broken != null) {
                     block.setType(resource.broken);
@@ -155,7 +157,7 @@ public class ResourceHandler implements Listener {
 
                 String message = resource.messageColor + "+" + drop.getAmount() + " " + resource.name;
                 player.sendActionBar(message);
-            } else if (resourceMappingsInverse.containsKey(material)) {
+            } else if (RESOURCE_MAPPINGS_INVERSE.containsKey(material)) {
                 block.getWorld().playSound(block.getLocation(), Sound.ENTITY_ARMOR_STAND_BREAK, 1, 1);
             }
         }
