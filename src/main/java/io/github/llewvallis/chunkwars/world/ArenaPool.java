@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 
 public class ArenaPool implements AutoCloseable {
 
+    public static final String DEFAULT_ARENA = "common";
+
     public static ArenaPool instance;
 
     private final Map<String, Arena> arenas = new HashMap<>();

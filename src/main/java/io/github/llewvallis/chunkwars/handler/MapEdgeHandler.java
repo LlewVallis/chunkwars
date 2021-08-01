@@ -39,6 +39,10 @@ public class MapEdgeHandler implements Listener {
                             location.getZ() > 15.7) {
                         shouldBeKilled.set(true);
                     }
+
+                    if (Math.abs(location.getX()) > 31.7 || Math.abs(location.getZ()) > 47.7) {
+                        shouldBeKilled.set(true);
+                    }
                 });
             });
 

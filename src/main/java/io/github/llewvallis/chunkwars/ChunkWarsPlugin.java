@@ -67,10 +67,11 @@ public class ChunkWarsPlugin extends JavaPlugin {
         register(new ExplosionHandler());
         register(new Restoration());
         register(new HarvesterHandler());
+        register(new PlayerJoinHandler());
         new BorderOutlineHandler();
 
         WorldManager.instance.cleanArenas();
-        ArenaPool.instance.create("cw1");
+        ArenaPool.instance.create(ArenaPool.DEFAULT_ARENA);
 
         DefaultInferenceProvider.getGlobal().register(GameTeam.class, new TeamArgument());
         DefaultInferenceProvider.getGlobal().register(NamedArena.class, new ArenaArgument());

@@ -1,5 +1,6 @@
 package io.github.llewvallis.chunkwars.map;
 
+import lombok.Value;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -10,10 +11,49 @@ import org.spongepowered.noise.NoiseQuality;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class TerrainGenerator extends ChunkGenerator {
 
     private static final int HEIGHT_OFFSET = 90;
+
+    private static final Set<ChunkCoord> ARENA_COORDS = Set.of(
+            new ChunkCoord(0, 0),
+            new ChunkCoord(-1, 0),
+            new ChunkCoord(0, -1),
+            new ChunkCoord(-1, -1),
+            new ChunkCoord(0, 1),
+            new ChunkCoord(-1, 1),
+            new ChunkCoord(0, -2),
+            new ChunkCoord(-1, -2)
+    );
+
+    private static final Set<ChunkCoord> BARRIER_COORDS = Set.of(
+            new ChunkCoord(-3, -4),
+            new ChunkCoord(-3, -3),
+            new ChunkCoord(-3, -2),
+            new ChunkCoord(-3, -1),
+            new ChunkCoord(-3, 0),
+            new ChunkCoord(-3, 1),
+            new ChunkCoord(-3, 2),
+            new ChunkCoord(-3, 3),
+            new ChunkCoord(2, -4),
+            new ChunkCoord(2, -3),
+            new ChunkCoord(2, -2),
+            new ChunkCoord(2, -1),
+            new ChunkCoord(2, 0),
+            new ChunkCoord(2, 1),
+            new ChunkCoord(2, 2),
+            new ChunkCoord(2, 3),
+            new ChunkCoord(-2, -4),
+            new ChunkCoord(-1, -4),
+            new ChunkCoord(0, -4),
+            new ChunkCoord(1, -4),
+            new ChunkCoord(-2, 3),
+            new ChunkCoord(-1, 3),
+            new ChunkCoord(0, 3),
+            new ChunkCoord(1, 3)
+    );
 
     private final int seed;
 
@@ -32,6 +72,12 @@ public class TerrainGenerator extends ChunkGenerator {
         terrainFrequencyZ = profile.terrainFrequencyZ();
     }
 
+    @Value
+    private static class ChunkCoord {
+        int x;
+        int z;
+    }
+
     @Override
     public ChunkData generateChunkData(World world, Random bukkitRandom, int chunkX, int chunkZ, BiomeGrid biomeGrid) {
         ChunkData chunk = createChunkData(world);
@@ -46,7 +92,14 @@ public class TerrainGenerator extends ChunkGenerator {
             }
         }
 
-        if (chunkX > 0 || chunkX < -1 || chunkZ > 1 || chunkZ < -2) {
+        ChunkCoord chunkCoord = new ChunkCoord(chunkX, chunkZ);
+
+        if (BARRIER_COORDS.contains(chunkCoord)) {
+            chunk.setRegion(0, 0, 0, 16, 256, 16, Material.BARRIER);
+            return chunk;
+        }
+
+        if (!ARENA_COORDS.contains(chunkCoord)) {
             return chunk;
         }
 

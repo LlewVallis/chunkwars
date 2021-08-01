@@ -63,6 +63,7 @@ public class WorldManager {
         player.setHealth(20);
         player.setFoodLevel(20);
         player.setSaturation(5);
+        player.setBedSpawnLocation(location, true);
 
         for (PotionEffect effect : player.getActivePotionEffects()) {
             player.removePotionEffect(effect.getType());

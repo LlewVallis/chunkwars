@@ -17,5 +17,3 @@ commands:
     usage: join <team>
   end:
     usage: end <team>
-  hub:
-    usage: hub
